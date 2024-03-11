@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl,FormGroup} from '@angular/forms';
+import { FormControl,FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -18,16 +18,16 @@ export class FormsComponent implements OnInit {
   
     this.reactiveForm = new FormGroup({
       
-      firstName: new FormControl('Robins'),
-      lastName: new FormControl('Ranjan'),
-      email: new FormControl('robinsranjan@gmail.com'),
+      firstName: new FormControl(null,[Validators.required,Validators.minLength(5)]),
+      lastName: new FormControl(null,Validators.required),
+      email: new FormControl('robinsranjan@gmail.com',[Validators.email,Validators.required]),
       userName: new FormControl('robinsranjan'),
       dob: new FormControl('05/04/2000'),
       gender: new FormControl('male'),
       street: new FormControl(null),
       city: new FormControl(null),
       state: new FormControl(null),
-      Postal: new FormControl(null),
+      postal: new FormControl(null),
       country: new FormControl(null)
     })
 
@@ -35,7 +35,8 @@ export class FormsComponent implements OnInit {
 
    
 submitted(){
-  alert('this form is submitted')
+  console.log(this.reactiveForm)
+  alert(this.reactiveForm.value.firstName)
 }
   
   

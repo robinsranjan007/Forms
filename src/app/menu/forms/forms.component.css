@@ -18,7 +18,7 @@ padding: 10x;
 
 .forms-input input{
     width: 40%;
-    border: 2px solid red;
+    /* border: 2px solid red; */
     border-radius: 12px;
     padding: 10px;
     font-size: 15px;
@@ -26,4 +26,13 @@ padding: 10x;
 
 .gender-box{
 display: inline-block;
+}
+
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
+small{
+color: red;
+font-weight: bold;
 }
