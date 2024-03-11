@@ -1,1 +1,67 @@
- 
+<form [formGroup]="reactiveForm" (ngSubmit)="submitted()">
+  <h1>Reactive Form</h1>
+  <div class="forms-input">
+    <input
+      type="text"
+      placeholder="First Name"
+      [formControlName]="'firstName'"
+    />
+  </div>
+
+  <div class="forms-input">
+    <input type="text" placeholder="Last Name" [formControlName]="'lastName'" />
+  </div>
+
+  <div class="forms-input">
+    <input type="text" placeholder="Email id" [formControlName]="'Email'" />
+  </div>
+
+  <div class="forms-input">
+    <input type="text" placeholder="User Name" [formControlName]="'UserName'" />
+  </div>
+
+  <div class="forms-input">
+    <input type="date" placeholder="Date of birth" [formControlName]="'dob'" />
+  </div>
+
+  <div class="forms-input">
+    <div class="gender-box">
+      <label for="Male">Male:</label>
+      <input type="radio" value="male" [formControlName]="'gender'" />
+    </div>
+
+    <div class="gender-box">
+      <label for="Female">FeMale:</label>
+      <input type="radio" value="Female" [formControlName]="'gender'" />
+    </div>
+
+    <div class="gender-box">
+      <label for="Male">Other:</label>
+      <input type="radio" value="Other" [formControlName]="'gender'" />
+    </div>
+  </div>
+
+  <div class="forms-input">
+    <input type="text" placeholder="Street" [formControlName]="'street'" />
+  </div>
+
+  <div class="forms-input">
+    <input type="text" placeholder="City" [formControlName]="'city'" />
+  </div>
+
+  <div class="forms-input">
+    <input type="text" placeholder="State" [formControlName]="'state'" />
+  </div>
+
+  <div class="forms-input">
+    <input type="text" placeholder="Postal" [formControlName]="'postal'" />
+  </div>
+
+  <div class="forms-input">
+    <input type="text" placeholder="Country" [formControlName]="'country'" />
+  </div>
+
+  <div class="forms-input">
+    <input type="submit" />
+  </div>
+</form>

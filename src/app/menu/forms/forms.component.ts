@@ -12,7 +12,7 @@ export class FormsComponent implements OnInit {
 
   constructor() { }
 
-  reactiveForm!:FormGroup;
+  reactiveForm:FormGroup=new FormGroup({});
 
   ngOnInit(): void {
   
@@ -23,7 +23,7 @@ export class FormsComponent implements OnInit {
       email: new FormControl('robinsranjan@gmail.com'),
       userName: new FormControl('robinsranjan'),
       dob: new FormControl('05/04/2000'),
-      gender: new FormControl('Male'),
+      gender: new FormControl('male'),
       street: new FormControl(null),
       city: new FormControl(null),
       state: new FormControl(null),
@@ -31,11 +31,12 @@ export class FormsComponent implements OnInit {
       country: new FormControl(null)
     })
 
-// okay
   }
 
    
-
+submitted(){
+  alert('this form is submitted')
+}
   
   
 }

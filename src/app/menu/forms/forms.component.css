@@ -1,8 +1,29 @@
-.enquiry-form{
-border: 2px solid red;
-background-color: aqua;
-height: 400px;
-width: 50%;
-text-align: center ;
-font-size: 20px;
+*{
+    margin: 0;
+    padding: 0;
+}
+
+form{
+    border: 2px solid black;
+    margin: auto;
+    width: 40%;
+    text-align: center;
+}
+
+.forms-input{
+    
+margin: 5px;
+padding: 10x;
+}
+
+.forms-input input{
+    width: 40%;
+    border: 2px solid red;
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 15px;
+}
+
+.gender-box{
+display: inline-block;
 }
