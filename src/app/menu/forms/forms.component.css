@@ -36,3 +36,29 @@ small{
 color: red;
 font-weight: bold;
 }
+
+.addresses{
+    border: 2px solid black;
+    width: 60%;
+    margin: auto;
+    border-radius: 12px;
+}
+
+.skills-tab{
+    border: 2px solid yellow ;
+}
+.skills-tab input{
+    width: 40%;
+    padding: 12px;
+    margin-top: 5px;
+}
+
+.skills-tab button{
+    margin: 5px;
+    width: 40%;
+    padding: 10px;
+    background-color: aqua;
+    border-radius: 12px;
+    color: white;
+    font-weight: 20px;
+}

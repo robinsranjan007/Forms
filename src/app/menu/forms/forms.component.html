@@ -7,8 +7,8 @@
       [formControlName]="'firstName'"
     />
     <br>
-    <small *ngIf="reactiveForm.get('firstName')?.invalid && reactiveForm.get('firstName')?.touched">please enter the first name</small>
-    <small *ngIf="reactiveForm.get('firstName')?.invalid && reactiveForm.get('firstName')?.touched && reactiveForm.controls['firstName'].errors?.['minlength']">please enter more then five characters</small>
+    <small *ngIf="reactiveForm.get('firstName')?.invalid && reactiveForm.get('firstName')?.touched && ! reactiveForm.controls['firstName'].errors?.['minlength']">please enter the first name</small>
+    <small *ngIf="reactiveForm.get('firstName')?.invalid && reactiveForm.get('firstName')?.touched && reactiveForm.get('firstName')?.errors?.['minlength']">please enter more then five characters</small>
   </div>
 
   <div class="forms-input">
@@ -45,26 +45,48 @@
       <input type="radio" value="Other" [formControlName]="'gender'" />
     </div>
   </div>
+<h1>Address:</h1>
+  <div class="addresses" formGroupName="address">
+    <div class="forms-input">
+      <input type="text" placeholder="Street" [formControlName]="'street'" />
+      <small *ngIf="validation('address.street')?.invalid && validation('address.street')?.touched">please enter the valid data</small>
+    </div>
+  
+    <div class="forms-input">
+      <input type="text" placeholder="City" [formControlName]="'city'" />
+      <small *ngIf="validation('address.city')?.invalid && validation('address.city')?.touched">please enter the valid data</small>
+    </div>
+  
+    <div class="forms-input">
+      <input type="text" placeholder="State" [formControlName]="'state'" />
+      <small *ngIf="validation('address.state')?.invalid && validation('address.state')?.touched">please enter the valid data</small>
+    </div>
+  
+    <div class="forms-input">
+      <input type="number" placeholder="Postal" [formControlName]="'postal'" />
+      <small *ngIf="validation('address.postal')?.invalid && validation('address.postal')?.touched">please enter the valid data</small>
+    </div>
+  
+    <div class="forms-input">
+      <input type="text" placeholder="Country" [formControlName]="'country'" />
+    </div>
 
-  <div class="forms-input">
-    <input type="text" placeholder="Street" [formControlName]="'street'" />
+  </div>
+  
+
+  <div class="skills-tab" formArrayName="skills">
+    <h1>skills</h1>
+    <div *ngFor="let item of skills['controls'], let i = index">
+      <input type="text"  [formControlName]="i"  >
+      <button (click)="deleteskills(i)">click to delete</button>
+
+    </div>
+
+<button type="button"  (click)="addskills()">click to add more skills</button>
+
   </div>
 
-  <div class="forms-input">
-    <input type="text" placeholder="City" [formControlName]="'city'" />
-  </div>
 
-  <div class="forms-input">
-    <input type="text" placeholder="State" [formControlName]="'state'" />
-  </div>
-
-  <div class="forms-input">
-    <input type="text" placeholder="Postal" [formControlName]="'postal'" />
-  </div>
-
-  <div class="forms-input">
-    <input type="text" placeholder="Country" [formControlName]="'country'" />
-  </div>
 
   <div class="forms-input">
     <input [disabled]="reactiveForm.invalid" type="submit" />

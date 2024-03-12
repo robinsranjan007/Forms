@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl,FormGroup, Validators} from '@angular/forms';
+import { FormArray, FormControl,FormGroup, Validators} from '@angular/forms';
 
 
 @Component({
@@ -24,20 +24,49 @@ export class FormsComponent implements OnInit {
       userName: new FormControl('robinsranjan'),
       dob: new FormControl('05/04/2000'),
       gender: new FormControl('male'),
-      street: new FormControl(null),
-      city: new FormControl(null),
-      state: new FormControl(null),
-      postal: new FormControl(null),
-      country: new FormControl(null)
-    })
+      address: new FormGroup({
+        street: new FormControl(null,[Validators.required]),
+        city: new FormControl(null,[Validators.required]),
+        state: new FormControl(null,[Validators.required]),
+        postal: new FormControl(null,[Validators.required]),
+        country: new FormControl(null,[Validators.required])
+      }),
+      skills: new FormArray([
+        new FormControl(null,[Validators.required]),
+        
+      ])
 
+
+    })
+   
   }
 
-   
+  addskills()
+  {
+    this.skills['controls'].push(new FormControl(null,[Validators.required]))
+  } 
+
+
+deleteskills(index:number)
+{
+  this.skills['controls'].splice(index,1)
+}
+
 submitted(){
   console.log(this.reactiveForm)
   alert(this.reactiveForm.value.firstName)
 }
   
+
+validation(val:string):any{
+  return this.reactiveForm.get(val)
+}
+
+get skills():FormArray {
+  return this.reactiveForm.get('skills') as FormArray;
+}
   
+
+
+
 }
