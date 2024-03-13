@@ -59,9 +59,13 @@ export class FormsComponent implements OnInit {
 
   }
 
+  formdata:any[]=[ ]
+
   submitted() {
-    console.log(this.reactiveForm);
-    alert(this.reactiveForm.value.firstName);
+    console.log(this.reactiveForm.value);
+  
+    this.formdata.push(this.reactiveForm.value)
+    this.reactiveForm.reset()
   }
 
   validation(val: string): any {
