@@ -62,3 +62,26 @@ font-weight: bold;
     color: white;
     font-weight: 20px;
 }
+
+.experience-forms{
+    border: 2px solid pink;
+    margin: 15px;
+}
+
+.experience-forms input{
+    width: 50%;
+    padding: 10px;
+}
+
+.experience-box{
+    border: 1px solid red;
+    margin: 5px;
+}
+
+button{
+
+    padding: 5px;
+    border-radius: 12px;
+    background-color: rgb(209, 72, 72);
+    color: white;
+}
