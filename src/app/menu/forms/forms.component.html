@@ -1,20 +1,27 @@
 <form [formGroup]="reactiveForm" (ngSubmit)="submitted()">
   <h1>Reactive Form</h1>
   <div class="forms-input">
-    <input
-      type="text"
-      placeholder="First Name"
-      [formControlName]="'firstName'"
-    />
-    <br>
-    <small *ngIf="reactiveForm.get('firstName')?.invalid && reactiveForm.get('firstName')?.touched && ! reactiveForm.controls['firstName'].errors?.['minlength']">please enter the first name</small>
-    <small *ngIf="reactiveForm.get('firstName')?.invalid && reactiveForm.get('firstName')?.touched && reactiveForm.get('firstName')?.errors?.['minlength']">please enter more then five characters</small>
+    <input type="text"  placeholder="First Name" [formControlName]="'firstName'" />
+    <br />
+    <small
+      *ngIf="reactiveForm.get('firstName')?.invalid && validation('firstName')?.touched && ! reactiveForm.controls['firstName'].errors?.['minlength'] && 
+      !reactiveForm.get('firstName')?.errors?.['invalidname']">please
+      enter the first name</small>
+    <small
+      *ngIf="reactiveForm.get('firstName')?.invalid && reactiveForm.get('firstName')?.touched && reactiveForm.get('firstName')?.errors?.['minlength']">please
+      enter more then five characters</small>
+      <small
+      *ngIf="reactiveForm.get('firstName')?.invalid && reactiveForm.get('firstName')?.touched && reactiveForm.get('firstName')?.errors?.['invalidname']"
+      >no space is allowed for the first names</small>
   </div>
 
   <div class="forms-input">
     <input type="text" placeholder="Last Name" [formControlName]="'lastName'" />
-    <br>
-    <small *ngIf="reactiveForm.get('lastName')?.invalid && reactiveForm.get('lastName')?.touched">please enter the last name</small>
+    <br />
+    <small *ngIf="
+        reactiveForm.get('lastName')?.invalid &&
+        reactiveForm.get('lastName')?.touched
+      ">please enter the last name</small>
   </div>
 
   <div class="forms-input">
@@ -23,6 +30,9 @@
 
   <div class="forms-input">
     <input type="text" placeholder="User Name" [formControlName]="'userName'" />
+    <button type="button" [disabled]="this.reactiveForm.get('firstName')?.invalid && this.reactiveForm.get('lastName')?.invalid" 
+    
+    (click)="username()">create Username</button>
   </div>
 
   <div class="forms-input">
@@ -45,48 +55,85 @@
       <input type="radio" value="Other" [formControlName]="'gender'" />
     </div>
   </div>
-<h1>Address:</h1>
-  <div class="addresses" formGroupName="address">
+  <h1>Address:</h1>
+  <div class="addresses" [formGroupName]="'address'">
     <div class="forms-input">
       <input type="text" placeholder="Street" [formControlName]="'street'" />
-      <small *ngIf="validation('address.street')?.invalid && validation('address.street')?.touched">please enter the valid data</small>
+      <small *ngIf="
+          validation('address.street')?.invalid &&
+          validation('address.street')?.touched
+        ">please enter the valid data</small>
     </div>
-  
+
     <div class="forms-input">
       <input type="text" placeholder="City" [formControlName]="'city'" />
-      <small *ngIf="validation('address.city')?.invalid && validation('address.city')?.touched">please enter the valid data</small>
+      <small *ngIf="
+          validation('address.city')?.invalid &&
+          validation('address.city')?.touched
+        ">please enter the valid data</small>
     </div>
-  
+
     <div class="forms-input">
       <input type="text" placeholder="State" [formControlName]="'state'" />
-      <small *ngIf="validation('address.state')?.invalid && validation('address.state')?.touched">please enter the valid data</small>
+      <small *ngIf="
+          validation('address.state')?.invalid &&
+          validation('address.state')?.touched
+        ">please enter the valid data</small>
     </div>
-  
+
     <div class="forms-input">
       <input type="number" placeholder="Postal" [formControlName]="'postal'" />
-      <small *ngIf="validation('address.postal')?.invalid && validation('address.postal')?.touched">please enter the valid data</small>
+      <small *ngIf="
+          validation('address.postal')?.invalid &&
+          validation('address.postal')?.touched
+        ">please enter the valid data</small>
     </div>
-  
+
     <div class="forms-input">
       <input type="text" placeholder="Country" [formControlName]="'country'" />
+      <small *ngIf="
+          validation('address.postal')?.invalid &&
+          validation('address.postal')?.touched
+        ">please enter the valid data</small>
     </div>
-
   </div>
-  
 
-  <div class="skills-tab" formArrayName="skills">
+  <div class="skills-tab" [formArrayName]="'skills'">
     <h1>skills</h1>
-    <div *ngFor="let item of skills['controls'], let i = index">
-      <input type="text"  [formControlName]="i"  >
+    <div *ngFor="let item of skills.controls; let i = index">
+      <input type="text" [formControlName]="i" />
       <button (click)="deleteskills(i)">click to delete</button>
-
     </div>
 
-<button type="button"  (click)="addskills()">click to add more skills</button>
-
+    <button type="button" (click)="addskills()">
+      click to add more skills
+    </button>
   </div>
 
+  <div class="experience-forms">
+    <h1>experience forms</h1>
+    <div [formArrayName]="'experience'">
+      <div *ngFor="let item of experience['controls']; let i = index">
+        <div [formGroupName]="i" class="experience-box">
+          <div>
+            <label for="company"> Company name:</label>
+            <input type="text" formControlName="company" />
+          </div>
+          <div>
+            <label for="position">Position</label>
+            <input type="text" formControlName="position" />
+          </div>
+          <div>
+            <label for="totalexperience">Total experience</label>
+            <input type="text" formControlName="totalexperience" />
+          </div>
+          <button type="button" (click)="delexperience(i)"> delete</button>
+        </div>
+      </div>
+    </div>
+    <button type="button" (click)="addexperience()">add experience</button>
 
+  </div>
 
   <div class="forms-input">
     <input [disabled]="reactiveForm.invalid" type="submit" />
